@@ -1,0 +1,24 @@
+{
+  "name": "flashcards",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently --kill-others-on-fail \"cd server && npm run start\" \"cd client && npm run start\"",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cthacker-udel/FlashCardApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cthacker-udel/FlashCardApp/issues"
+  },
+  "homepage": "https://github.com/cthacker-udel/FlashCardApp#readme",
+  "dependencies": {
+    "concurrently": "^6.5.1"
+  }
+}

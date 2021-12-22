@@ -1,6 +1,7 @@
+import { CardMiddleware } from './card.middleware';
 import { CardController } from './card.controller';
 import { CardService } from './card.service';
-import { Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 
 
 
@@ -10,4 +11,12 @@ import { Module } from "@nestjs/common";
     providers: [CardService],
     exports: [CardService]
 })
-export class CardModule{};
+export class CardModule implements NestModule{
+
+    configure(consumer: MiddlewareConsumer) {
+        consumer
+        .apply(CardMiddleware)
+        .forRoutes('card');
+    };
+
+};
