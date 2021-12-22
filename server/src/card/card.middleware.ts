@@ -12,5 +12,3 @@ export class CardMiddleware implements NestMiddleware {
     };
 
 };
-
-export const exampleMiddleWare = ()

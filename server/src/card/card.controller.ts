@@ -1,5 +1,6 @@
 import { CardService } from './card.service';
-import { Controller, Get, ImATeapotException } from "@nestjs/common";
+import { Controller, Get, ImATeapotException, Param, ParseIntPipe } from "@nestjs/common";
+import { CardEntity } from './entities/card.entity';
 
 
 
@@ -12,6 +13,13 @@ export class CardController {
     async getAllCards() {
         return this.noteService.getAllCardsService();
     }
+
+    @Get(':id')
+    async getSpecificCard(@Param('id', ParseIntPipe) id: number): Promise<CardEntity> {
+        return this.noteService.getAllCardsService().then((result) => {
+            return this.noteService.getSpecificCard(result[id].question);
+        });
+    };
 
 
 }

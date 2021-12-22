@@ -15,5 +15,12 @@ export class CardService {
         return await this.mongoManager.find(CardEntity);
     };
 
+    async getSpecificCard(filterQuestion: string): Promise<CardEntity> {
+        this.mongoManager = getMongoManager("mongo");
+        return await this.mongoManager.findOne(CardEntity, {
+            question: filterQuestion
+        });
+    }
+
 
 };
