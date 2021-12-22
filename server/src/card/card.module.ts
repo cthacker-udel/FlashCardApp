@@ -1,7 +1,7 @@
 import { CardMiddleware } from './card.middleware';
 import { CardController } from './card.controller';
 import { CardService } from './card.service';
-import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/common";
 
 
 
@@ -16,7 +16,8 @@ export class CardModule implements NestModule{
     configure(consumer: MiddlewareConsumer) {
         consumer
         .apply(CardMiddleware)
-        .forRoutes('card');
+        .exclude({path: "example", method: RequestMethod.DELETE})
+        .forRoutes(CardController);
     };
 
 };

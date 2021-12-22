@@ -1,5 +1,5 @@
 import { CardService } from './card.service';
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, ImATeapotException } from "@nestjs/common";
 
 
 
@@ -10,9 +10,7 @@ export class CardController {
 
     @Get('all')
     async getAllCards() {
-
-        
-
+        return this.noteService.getAllCardsService();
     }
 
 

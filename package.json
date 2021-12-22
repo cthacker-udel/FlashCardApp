@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently --kill-others-on-fail \"cd server && npm run start\" \"cd client && npm run start\"",
+    "start": "concurrently --kill-others-on-fail \"cd server && npm run start\" \"cd client && npm run start\""
   },
   "repository": {
     "type": "git",
