@@ -1,3 +1,4 @@
+import { ClassTranformerValidatorPipe } from './card/card.validation.pipe';
 import { MongoConfig } from './../config/mongo/mongo.config';
 import { NestFactory } from '@nestjs/core';
 import { ConnectionOptions, createConnection } from 'typeorm';
@@ -9,6 +10,8 @@ async function bootstrap() {
 
     app.enableCors();
     app.use(cors());
+
+    app.useGlobalPipes(new ClassTranformerValidatorPipe());
 
     const connection = await createConnection(
         {...MongoConfig as ConnectionOptions}

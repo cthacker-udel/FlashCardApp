@@ -22,7 +22,7 @@ export class CardService {
         });
     };
 
-    async createCard(card: CardEntity):  {
+    async createCard(card: CardEntity): Promise<CardEntity> {
         this.mongoManager = getMongoManager("mongo");
         return await this.mongoManager.save(card);
     };

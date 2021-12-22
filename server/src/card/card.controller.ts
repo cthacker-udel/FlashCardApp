@@ -1,25 +1,32 @@
+import { CardExistsPipe } from './card.cardExists.pipe';
+import { ClassTranformerValidatorPipe } from './card.validation.pipe';
+import { CardSchema } from './schema/card.schema';
 import { CardService } from './card.service';
-import { Controller, Get, ImATeapotException, Param, ParseIntPipe } from "@nestjs/common";
+import { Body, Controller, DefaultValuePipe, Get, ImATeapotException, Param, ParseIntPipe, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CardEntity } from './entities/card.entity';
+import { CardDto } from './dto/card.dto';
 
 
 
 @Controller('card')
 export class CardController {
 
-    constructor( private readonly noteService: CardService){}
+    constructor( private readonly cardService: CardService){}
 
     @Get('all')
     async getAllCards() {
-        return this.noteService.getAllCardsService();
+        return this.cardService.getAllCardsService();
     }
 
     @Get(':id')
-    async getSpecificCard(@Param('id', ParseIntPipe) id: number): Promise<CardEntity> {
-        return this.noteService.getAllCardsService().then((result) => {
-            return this.noteService.getSpecificCard(result[id].question);
-        });
+    getSpecificCard(@Param('id', new DefaultValuePipe('none'), CardExistsPipe) id: CardEntity): CardEntity {
+        return id;
     };
+
+    @Post('new')
+    async createNewCard(@Body(new DefaultValuePipe({}), new ClassTranformerValidatorPipe()) createCard: CardDto ) {
+        return await this.cardService.createCard(createCard as CardEntity);
+    }
 
 
 }
