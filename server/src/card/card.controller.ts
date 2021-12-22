@@ -12,7 +12,7 @@ export class NoteController {
     @Get('all')
     async getAllCards() {
 
-
+        
 
     }
 
