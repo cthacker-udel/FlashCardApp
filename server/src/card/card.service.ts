@@ -1,3 +1,4 @@
+import { CardEntity } from './entities/card.entity';
 import { Injectable } from "@nestjs/common";
 import { getMongoManager, MongoEntityManager } from "typeorm";
 
@@ -9,12 +10,10 @@ export class NoteService {
 
     mongoManager: MongoEntityManager;
 
-    async getAllCardsService(){
-
+    async getAllCardsService(): Promise<CardEntity[]> {
         this.mongoManager = getMongoManager("mongo");
-        return await this.mongoManager.find();
-
-    }
+        return await this.mongoManager.find(CardEntity);
+    };
 
 
 };

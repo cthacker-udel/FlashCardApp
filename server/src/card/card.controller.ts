@@ -1,4 +1,4 @@
-import { NoteService } from './note.service';
+import { NoteService } from './card.service';
 import { Controller, Get } from "@nestjs/common";
 
 
