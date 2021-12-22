@@ -6,7 +6,7 @@ import { getMongoManager, MongoEntityManager } from "typeorm";
 
 
 @Injectable()
-export class NoteService {
+export class CardService {
 
     mongoManager: MongoEntityManager;
 

@@ -1,13 +1,12 @@
-import { NoteService } from './card.service';
+import { CardService } from './card.service';
 import { Controller, Get } from "@nestjs/common";
 
 
 
-@Controller('note')
-export class NoteController {
+@Controller('card')
+export class CardController {
 
-    constructor( private readonly noteService: NoteService){}
-
+    constructor( private readonly noteService: CardService){}
 
     @Get('all')
     async getAllCards() {
