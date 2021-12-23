@@ -15,7 +15,7 @@ export class ClassTranformerValidatorPipe implements PipeTransform {
         if (errors.length > 0) {
             throw new BadRequestException('Validation failed');
         }
-        return value;
+        return object;
 
     }
 

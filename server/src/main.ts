@@ -11,8 +11,6 @@ async function bootstrap() {
     app.enableCors();
     app.use(cors());
 
-    app.useGlobalPipes(new ClassTranformerValidatorPipe());
-
     const connection = await createConnection(
         {...MongoConfig as ConnectionOptions}
     )

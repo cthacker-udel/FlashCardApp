@@ -1,3 +1,4 @@
+import { IsString } from "class-validator";
 import { Column, Entity, ObjectIdColumn } from "typeorm";
 
 

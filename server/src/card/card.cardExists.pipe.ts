@@ -11,9 +11,14 @@ export class CardExistsPipe implements PipeTransform {
 
     async transform(value: string, metadata: ArgumentMetadata) {
         const mongoManager = getMongoManager("mongo");
-        const result = await mongoManager.findOne(CardEntity, {
+        let result;
+        try{
+        result = await mongoManager.findOne(CardEntity, {
             question: value
         });
+        } catch (error) {
+            throw new BadRequestException('Card does not exist in database');
+        }   
         if (result === undefined) {
             throw new BadRequestException('Card does not exist in database');
         }

@@ -19,14 +19,14 @@ export class CardController {
     }
 
     @Get(':id')
-    getSpecificCard(@Param('id', new DefaultValuePipe('none'), CardExistsPipe) id: CardEntity): CardEntity {
+    getSpecificCard(@Param('id', new DefaultValuePipe('none'), new CardExistsPipe()) id: CardEntity): CardEntity {
         return id;
     };
 
     @Post('new')
-    async createNewCard(@Body(new DefaultValuePipe({}), new ClassTranformerValidatorPipe()) createCard: CardDto ) {
-        return await this.cardService.createCard(createCard as CardEntity);
+    async createNewCard(@Body(new DefaultValuePipe({}), new ClassTranformerValidatorPipe()) createCard: CardEntity ) {
+        console.log("before calling createcard");
+        return await this.cardService.createCard(createCard);
     }
-
 
 }
