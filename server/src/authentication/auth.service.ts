@@ -1,15 +1,18 @@
+import { UserService } from './../users/user.service';
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 
 
 
 @Injectable()
-export class AuthService extends PassportStrategy{
+export class AuthService{
 
-    constructor(){
-        super({}, () => {
-            return null;
-        });
+    constructor( private readonly userService: UserService){}
+
+    async validateUser (username: string, password: string) {
+
+        const user = await this.userService.
+
     }
 
 }

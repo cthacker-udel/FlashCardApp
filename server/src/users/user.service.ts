@@ -1,4 +1,6 @@
-import { Injectable } from "@nestjs/common";
+import { UserEntity } from './entities/user.entity';
+import { getMongoManager } from 'typeorm';
+import { BadRequestException, Injectable } from "@nestjs/common";
 
 
 
@@ -6,9 +8,25 @@ import { Injectable } from "@nestjs/common";
 export class UserService {
 
     async getUsers() {
-        return new Promise<string>((res, err) => {
-            return 'success';
-        });
+        const mongoManager = getMongoManager("mongo");
+        try{
+            return await mongoManager.find(UserEntity);
+        } catch (error) {
+            throw new BadRequestException("Unable to find user in database");
+        }
+    }
+
+    async getUser(username: string) {
+
+        const mongoManager = getMongoManager("mongo");
+        try{
+            return await mongoManager.findOne(UserEntity, {
+                username: username
+            });
+        } catch (error) {
+            throw new BadRequestException('User does not exist in database');
+        }
+
     }
 
 };
