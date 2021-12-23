@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { Reflector } from "@nestjs/core";
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuardV2 implements CanActivate {
 
     constructor (private reflector: Reflector){}
 
